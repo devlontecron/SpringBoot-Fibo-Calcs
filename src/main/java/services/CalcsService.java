@@ -64,52 +64,39 @@ public class CalcsService {
    @RequestMapping(value = "/",method = RequestMethod.POST)
     public Map<String, Object> PostJson(@RequestBody Map<String, Object> jobj) {
         log.info("Calcs POST");
-        
-        CalcsNumbers myCalc = new CalcsNumbers();
-        
-        
-        Map<String, Object> test = new HashMap<String, Object>();
-        
+                
         int calcs = (Integer) jobj.get("calcs");
         int loops = (Integer) jobj.get("loops");
         int sleep = (Integer) jobj.get("sleep");
-        
-        test.put("PC", calcs);
-        test.put("PL", loops);
-        test.put("PS", sleep);
-        
-        
 
+        CalcsNumbers myCalc = new CalcsNumbers();
+        
         myCalc.setCalcs(calcs);
         myCalc.setLoops(loops);
-        myCalc.setLoops(sleep);
-        
-        test.put("CC", myCalc.getCalcs());
-        test.put("CL", myCalc.getLoops());
-        test.put("CS", myCalc.getSleep());
-        
-        return test;
+        myCalc.setSleep(sleep);
         
         /**
+         * Mapping values to myCalcs object isn't working correctly
+         * 
+         
+        Map<String, Object> test = new HashMap<String, Object>();
+        
+        test.put("myCalc", myCalc.getCalcs());
+        test.put("myLoops", myCalc.getLoops());
+        test.put("mySleep", myCalc.getSleep());
+        
+        return test;
+
+    **/
         
         StringBuilder text = new StringBuilder();
         text.append("The JSON obj:" + jobj.toString() + "\n");
         text.append("Request for Calcs" + "\n");
         log.info(text.toString());
         
-        return jobj;
-        /**
+        return randoCalc(calcs,loops, sleep);
         
-        Map<String, Object> test = new HashMap<String, Object>();
-        
-        test.put("C", myCalc.getCalcs());
-        test.put("L", myCalc.getLoops());
-        test.put("S", myCalc.getSleep());
-        
-        return test;
 
-        //return randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
-    **/
     }
     
     
