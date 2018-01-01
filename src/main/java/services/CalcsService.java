@@ -61,30 +61,36 @@ public class CalcsService {
         return sText;
     }
     
-   @RequestMapping(value = "/post",method = RequestMethod.POST)
+   @RequestMapping(value = "/",method = RequestMethod.POST)
     public Map<String, Object> PostJson(@RequestBody Map<String, Object> jobj) {
         log.info("Calcs POST");
         
-        return jobj;
- /**
-        CalcsNumbers args = new CalcsNumbers();
+        CalcsNumbers myCalc = new CalcsNumbers();
         
         int calcs = (Integer) jobj.get("calcs");
         int loops = (Integer) jobj.get("loops");
         int sleep = (Integer) jobj.get("sleep");
         
-        args.setCalcs(calcs);
-        args.setLoops(loops);
-        args.setLoops(sleep);
+        myCalc.setCalcs(calcs);
+        myCalc.setLoops(loops);
+        myCalc.setLoops(sleep);
         
         StringBuilder text = new StringBuilder();
         text.append("The JSON obj:" + jobj.toString() + "\n");
         text.append("Request for Calcs" + "\n");
         log.info(text.toString());
         
+        
+        Map<String, Object> test = new HashMap<String, Object>();
+        
+        test.put("C", myCalc.getCalcs());
+        test.put("L", myCalc.getLoops());
+        test.put("S", myCalc.getSleep());
+        
+        return test;
 
-        return randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
-    **/
+        //return randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
+    
     }
     
     

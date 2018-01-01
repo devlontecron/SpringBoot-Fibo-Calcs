@@ -59,10 +59,11 @@ public class FiboService {
         return sText;
     }
     
-    @RequestMapping(value = "/{jobj}", method = RequestMethod.POST)
-    public Map<String, Object> PostJson(@RequestBody String jobj) {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public Map<String, Object> PostJson(@RequestBody Map<String, Object> jobj) {
         log.info("Fibonacci POST");
-        int inputVal = Integer.getInteger(jobj);
+        
+        int inputVal = (Integer) jobj.get("number");
         
         FiboNumbers fn = new FiboNumbers();
         fn.setNumber(inputVal);
