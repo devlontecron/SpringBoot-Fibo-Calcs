@@ -6,17 +6,21 @@
 package services;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import objects.CalcsNumbers;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * REST Web Service
@@ -58,32 +62,36 @@ public class CalcsService {
         return sText;
     }
     
-   @RequestMapping(method = RequestMethod.POST)
-    public String PostJson(String jobj) throws JSONException, IOException {
+   @RequestMapping(value = "/post",method = RequestMethod.POST)
+    public Map<String, Object> PostJson(@RequestBody Map<String, Object> jobj) {
         log.info("Calcs POST");
-        ObjectMapper mapper = new ObjectMapper();
-        CalcsNumbers args = mapper.readValue(jobj.toString(), CalcsNumbers.class);
-                
+ 
+        CalcsNumbers args = new CalcsNumbers();
+        
+        int calcs = Integer.parseInt((String) jobj.get("calcs"));
+        int loops = Integer.parseInt((String) jobj.get("loops"));
+        int sleep = Integer.parseInt((String) jobj.get("sleep"));
+        
+        args.setCalcs(calcs);
+        args.setLoops(loops);
+        args.setLoops(sleep);
+        
         StringBuilder text = new StringBuilder();
         text.append("The JSON obj:" + jobj.toString() + "\n");
         text.append("Request for Calcs" + "\n");
         log.info(text.toString());
         
-        JSONObject calcString = randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
-        
-        JSONObject calcsOut = new JSONObject();
-        calcsOut.put("Output", calcString);
 
-        return calcsOut.toString();
+        return randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
     }
     
     
     
-    public JSONObject randoCalc(int calcPass, int loopPass, int sleepPass) throws JSONException {
+    public Map<String, Object> randoCalc(int calcPass, int loopPass, int sleepPass) {
 
         StringBuilder output = new StringBuilder();
         
-        JSONObject randoCalcOut = new JSONObject();
+        Map<String, Object> randoCalcOut = new HashMap<String, Object>();
         
         int calcs = calcPass;
         int loopsIn = loopPass;
