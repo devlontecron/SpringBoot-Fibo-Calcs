@@ -7,35 +7,32 @@ package objects;
 public class CalcsNumbers {
    
 
-  private int Ocalcs;
-  private int Oloops;
-  private int Osleep;
+  private int calcs;
+  private int loops;
+  private int sleep;
   
-  public CalcsNumbers() {
-  }
-
    public int getCalcs() {
-       return Ocalcs;
+       return calcs;
    }
 
    public void setCalcs(int calcs) {
-       this.Ocalcs = calcs;
+       this.calcs = calcs;
    }
 
    public int getLoops() {
-       return Oloops;
+       return loops;
    }
 
    public void setLoops(int loops) {
-       this.Oloops = loops;
+       this.loops = loops;
    }
 
    public int getSleep() {
-       return Osleep;
+       return sleep;
    }
 
    public void setSleep(int sleep) {
-       this.Osleep = sleep;
+       this.sleep = sleep;
    }
    
 }

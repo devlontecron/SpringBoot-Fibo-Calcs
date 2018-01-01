@@ -75,28 +75,21 @@ public class CalcsService {
         myCalc.setLoops(loops);
         myCalc.setSleep(sleep);
         
-        /**
-         * Mapping values to myCalcs object isn't working correctly
-         * 
-         
+        /**   
+         * Testing and checking for correct binding and parsing
         Map<String, Object> test = new HashMap<String, Object>();
-        
         test.put("myCalc", myCalc.getCalcs());
         test.put("myLoops", myCalc.getLoops());
         test.put("mySleep", myCalc.getSleep());
-        
-        return test;
-
-    **/
+        **/
         
         StringBuilder text = new StringBuilder();
         text.append("The JSON obj:" + jobj.toString() + "\n");
         text.append("Request for Calcs" + "\n");
         log.info(text.toString());
         
-        return randoCalc(calcs,loops, sleep);
+        return randoCalc(myCalc.getCalcs(),myCalc.getLoops(), myCalc.getSleep());
         
-
     }
     
     
