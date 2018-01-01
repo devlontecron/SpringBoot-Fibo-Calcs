@@ -5,7 +5,6 @@
  */
 package services;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -47,7 +46,7 @@ public class CalcsService {
    @RequestMapping(method = RequestMethod.GET)
     public String getXml() {
         log.info("Calcs GET");
-        return "<html><body>Calcs Service</body></html>";
+        return "<html><body>Calcs Service TEST</body></html>";
     }
 
     /**
@@ -65,12 +64,14 @@ public class CalcsService {
    @RequestMapping(value = "/post",method = RequestMethod.POST)
     public Map<String, Object> PostJson(@RequestBody Map<String, Object> jobj) {
         log.info("Calcs POST");
- 
+        
+        return jobj;
+ /**
         CalcsNumbers args = new CalcsNumbers();
         
-        int calcs = Integer.parseInt((String) jobj.get("calcs"));
-        int loops = Integer.parseInt((String) jobj.get("loops"));
-        int sleep = Integer.parseInt((String) jobj.get("sleep"));
+        int calcs = (Integer) jobj.get("calcs");
+        int loops = (Integer) jobj.get("loops");
+        int sleep = (Integer) jobj.get("sleep");
         
         args.setCalcs(calcs);
         args.setLoops(loops);
@@ -83,13 +84,13 @@ public class CalcsService {
         
 
         return randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
+    **/
     }
     
     
     
     public Map<String, Object> randoCalc(int calcPass, int loopPass, int sleepPass) {
 
-        StringBuilder output = new StringBuilder();
         
         Map<String, Object> randoCalcOut = new HashMap<String, Object>();
         

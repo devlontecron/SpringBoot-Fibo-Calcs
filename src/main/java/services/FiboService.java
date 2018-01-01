@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +60,7 @@ public class FiboService {
     }
     
     @RequestMapping(value = "/{jobj}", method = RequestMethod.POST)
-    public Map<String, Object> PostJson(@PathVariable("jobj") String jobj) {
+    public Map<String, Object> PostJson(@RequestBody String jobj) {
         log.info("Fibonacci POST");
         int inputVal = Integer.getInteger(jobj);
         
